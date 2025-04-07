@@ -1,11 +1,11 @@
 """
 title: GitAccess
-author: Pascal Frerks
+author: ErrorRExorY/CptExorY
 author_url: https://pascal-frerks.de
-git_url: https://github.com/username/string-reverse.git
+git_url: https://github.com/WhyWaitServices/open-webui-gitaccess.git
 description: This Tool allows the LLM to connect to one GitHub Repo to fetch its contents to ask it about it and use it to have your model always have the current state of the project
 required_open_webui_version: 0.6.0
-version: 0.0.4
+version: 0.1.0
 licence: MIT
 """
 
@@ -60,7 +60,7 @@ async def emit_citation(__event_emitter__, content, title, url):
         {
             "type": "citation",
             "data": {
-                "document": [content],  # Ensure content is provided as list
+                "document": [content],
                 "metadata": [
                     {"date_accessed": datetime.now().isoformat(), "source": title}
                 ],
@@ -106,7 +106,7 @@ class Tools:
         self.filter = Filter()
         self.pipe = RepositoryPipe()
         self.action = Action()
-        self.citation = False  # Ensure custom citations are managed
+        self.citation = False
 
     async def _fetch_directory_contents(
         self,
@@ -280,7 +280,7 @@ class Tools:
                     file_url = item.get("url", "Unknown")
                     await emit_citation(
                         __event_emitter__,
-                        [item.get("content", "")],  # Ensure content is passed as list
+                        [item.get("content", "")],
                         f"Repo: {repo_name}, File: {file_name}",
                         file_url,
                     )
